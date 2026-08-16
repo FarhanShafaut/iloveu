@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I Love You</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7, #ff9a9e, #fecfef);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    font-family: 'Segoe UI', Verdana, sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .card {
+    text-align: center;
+    z-index: 5;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(6px);
+    padding: 50px 60px;
+    border-radius: 30px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+  h1 {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 2px 2px 10px rgba(200,0,80,0.4);
+    margin-bottom: 10px;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  p {
+    font-size: 1.3rem;
+    color: #7a1f3d;
+    font-style: italic;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  .flower {
+    position: absolute;
+    font-size: 2rem;
+    animation: float 8s ease-in-out infinite;
+    opacity: 0.9;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(15deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+  .heart {
+    position: absolute;
+    top: -10%;
+    font-size: 1.5rem;
+    animation: fall linear infinite;
+    opacity: 0.8;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>I ❤️ You</h1>
+  <p>Every moment with you blooms like a garden 🌸</p>
+</div>
+
+<script>
+  const flowers = ['🌸','🌷','🌹','🌻','🌼','💐'];
+  for (let i = 0; i < 18; i++) {
+    const f = document.createElement('div');
+    f.className = 'flower';
+    f.textContent = flowers[Math.floor(Math.random()*flowers.length)];
+    f.style.left = Math.random()*100 + 'vw';
+    f.style.top = Math.random()*100 + 'vh';
+    f.style.animationDuration = (5 + Math.random()*5) + 's';
+    f.style.fontSize = (1.5 + Math.random()*2) + 'rem';
+    document.body.appendChild(f);
+  }
+
+  const hearts = ['💕','💗','💖','❤️'];
+  setInterval(() => {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.animationDuration = (4 + Math.random()*4) + 's';
+    h.style.fontSize = (1 + Math.random()*1.5) + 'rem';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 8000);
+  }, 600);
+</script>
+
+</body>
+</html>
